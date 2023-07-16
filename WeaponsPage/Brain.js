@@ -98,6 +98,10 @@ async function getShareValueFromURL() {
     }
 }
 
+// Обработчик события DOMContentLoaded
+document.addEventListener('DOMContentLoaded', async function () {
+    await getShareValueFromURL();
+});
 
 
 
