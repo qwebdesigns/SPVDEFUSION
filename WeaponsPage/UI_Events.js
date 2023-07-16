@@ -172,7 +172,7 @@ function getShareLink(button) {
         copyToClipboard(link);
 
         // Сообщаем пользователю, что ссылка была скопирована
-        console.log('Ссылка скопирована в буфер обмена.');
+        console.alert('Ссылка скопирована в буфер обмена.');
     } else {
         console.warn('Ссылка не сработала');
     }
