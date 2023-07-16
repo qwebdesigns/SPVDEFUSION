@@ -55,28 +55,36 @@ $(document).ready(function () {
     
     readWeaponSkins();
     //document.addEventListener('DOMContentLoaded', function () {
-    getShareValueFromURL()
+    //getShareValueFromURL()
     //});
 });
 
 
-
-function getShareValueFromURL() {
+async function getShareValueFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const shareValue = urlParams.get('share');
     console.log(shareValue); // Выведет значение параметра "share" или null, если он отсутствует
 
-    // Проверяем, что значение shareValue не пустое, и вызываем GETNameFromCard(shareValue)
+    // Проверяем, что значение shareValue не пустое
     if (shareValue) {
-        //const shareLink = `https://blockadebook.ru/weapon?share=${shareValue}`;
-        GETNameFromCard(shareValue);
+        // Вместо простого тайм-аута, вам нужно получить данные для jsonData из асинхронного источника, например, с помощью AJAX запроса
+        // Пример с тайм-аутом в 3 секунды для демонстрации
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        // После получения данных или выполнения асинхронных операций, вызываем GETNameFromCard(shareValue)
+        
+        if (jsonData) {
+            GETNameFromCard(shareValue);
+        } else {
+            console.log('jsonData is empty');
+        }
     }
 }
 
 // Обработчик события DOMContentLoaded
-
-
-
+document.addEventListener('DOMContentLoaded', async function () {
+    await getShareValueFromURL();
+});
 
 
 
