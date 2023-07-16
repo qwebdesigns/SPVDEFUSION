@@ -1,12 +1,13 @@
 var jsonData;
 var skinsData;
+var shareValue;
 
 $(document).ready(function () {
     var spreadsheetId = '1FblgSUb0Bb5BqU3xmYv_f8_ConUytYq3Uc8_V8Qcr-E';
     var apiKey = 'AIzaSyDYlCMZ-qIiTlwHLYZquW9qQAQlG3khikA';
     var sheetName = 'ТТХ';
     var column = 'D';
-
+    shareValue = getShareValueFromURL();
     // Получение "глубины" столбца D
     var depthUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!${column}:${column}?key=${apiKey}`;
     $.get(depthUrl, function (response) {
@@ -49,16 +50,18 @@ $(document).ready(function () {
             //console.table(jsonData);
         });
     });
+    
     readWeaponSkins();
+    
 });
 
 
 
 
-
-
-
-
+function getShareValueFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('share');
+}
 
 function readWeaponSkins() {
     var spreadsheetId = '1FblgSUb0Bb5BqU3xmYv_f8_ConUytYq3Uc8_V8Qcr-E';
@@ -616,10 +619,8 @@ function GETNameFromCard(card) {
     var button = document.querySelector('.AddWpToSravIN');
     var linkes = 'openSravnenie(this); insertCellsAndImageToRows(\'' + weaponName + '\');'
     button.setAttribute('onclick', linkes);
-    //onclick = function () {
-    //    openSravnenie(this);
-    //    insertCellsAndImageToRows(weaponName);
-    //};
+
+    document.getElementById('ShareButton').setAttribute('share', weaponName);
 }
 
 
@@ -738,6 +739,8 @@ function GETNameFromCardIvents(card) {
     var button = document.querySelector('.AddWpToSravIN');
     var linkes = 'openSravnenie(this); insertCellsAndImageToRows(\'' + weaponName + '\');'
     button.setAttribute('onclick', linkes);
+
+    document.getElementById('ShareButton').setAttribute('share', weaponName);
 }
 
 
@@ -855,6 +858,8 @@ function GETNameFromCardIvents1(card) {
     var button = document.querySelector('.AddWpToSravIN');
     var linkes = 'openSravnenie(this); insertCellsAndImageToRows(\'' + weaponName + '\');'
     button.setAttribute('onclick', linkes);
+
+    document.getElementById('ShareButton').setAttribute('share', weaponName);
 
 }
 

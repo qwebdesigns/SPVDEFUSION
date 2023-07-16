@@ -152,8 +152,23 @@ buttonNames.forEach(function (buttonName) {
 */
 
 
+// Автоматически вызываем функцию при загрузке окна
 
 
+function getShareLink(button) {
+    // Получение значения атрибута "share" из кнопки
+    const shareValue = button.getAttribute('share');
+    console.warn('Ссылка не 123131231231');
+
+    // Проверка наличия значения атрибута "share"
+    if (shareValue) {
+        // Создание ссылки с полученным значением атрибута "share"
+        const link = `https://qwebdesigns.github.io/SPVDEFUSION/weapons?share=${shareValue}`;
+        console.warn(link);
+    } else {
+        console.warn('Ссылка не сработала');
+    }
+}
 
 
 
