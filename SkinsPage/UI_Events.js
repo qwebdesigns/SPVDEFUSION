@@ -153,6 +153,10 @@ buttonNames.forEach(function (buttonName) {
 
 
 
+
+
+
+
 function stringToHex(text) {
     let hexString = '';
     for (let i = 0; i < text.length; i++) {
@@ -162,29 +166,26 @@ function stringToHex(text) {
     return hexString;
 }
 
-async function getShareValueFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const shareValue = urlParams.get('share');
-    console.log(shareValue); // Выведет значение параметра "share" или null, если он отсутствует
+function getShareLink(button) {
+    // Получение значения атрибута "share" из кнопки
+    const shareValue = button.getAttribute('share');
 
-    // Проверяем, что значение shareValue не пустое
+    // Проверка наличия значения атрибута "share"
     if (shareValue) {
-        alert('Использованная вами ссылка на скин загружается.. Подождите секунду..');
+        // Кодируем значение атрибута в 16-ричный код
+        const encodedShareValue = stringToHex(shareValue).replace(/\s+/g, '_');
 
-        // Вместо простого тайм-аута, вам нужно получить данные для jsonData из асинхронного источника, например, с помощью AJAX запроса
-        // Пример с тайм-аутом в 3 секунды для демонстрации
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        // Создание ссылки с полученным значением атрибута "share" (с нижними подчеркиваниями, если есть пробелы)
+        const link = `https://qwebdesigns.github.io/SPVDEFUSION/skins?share=${encodedShareValue}`;
+        console.warn(link);
 
-        console.log('Значение в 16-ричном коде:');
-        const hexValue = stringToHex(shareValue);
-        console.log(hexValue);
+        // Копируем ссылку в буфер обмена
+        copyToClipboard(link);
 
-        // После получения данных или выполнения асинхронных операций, вызываем GETNameFromCard(shareValue)
-        if (jsonData) {
-            GETNameFromCard(shareValue);
-        } else {
-            console.log('jsonData is empty');
-        }
+        // Сообщаем пользователю, что ссылка была скопирована
+        alert('Ссылка скопирована в буфер обмена.');
+    } else {
+        console.warn('Ссылка не сработала');
     }
 }
 
