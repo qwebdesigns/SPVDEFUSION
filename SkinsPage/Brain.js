@@ -45,7 +45,7 @@ async function getShareValueFromURL() {
     const shareValue = urlParams.get('share');
 
     // Декодируем значение shareValue, если оно не пустое
-    const decodedShareValue = shareValue ? decodeURIComponent(shareValue) : null;
+    const decodedShareValue = shareValue ? decodeURIComponent(decodeURIComponent(shareValue)) : null;
     console.log(decodedShareValue); // Выведет значение параметра "share" с декодированными символами или null, если он отсутствует
 
     // Проверяем, что значение decodedShareValue не пустое
