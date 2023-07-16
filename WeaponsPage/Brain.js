@@ -54,8 +54,11 @@ $(document).ready(function () {
     });
     
     readWeaponSkins();
-    //document.addEventListener('DOMContentLoaded', function () {
+    if (jsonData) {
         getShareValueFromURL();
+    }
+    //document.addEventListener('DOMContentLoaded', function () {
+        
     //});
 });
 
