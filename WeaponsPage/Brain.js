@@ -62,13 +62,26 @@ $(document).ready(function () {
 function getShareValueFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const shareValue = urlParams.get('share');
-    console.log("linkshare = "+shareValue); // Выведет значение параметра "share" или null, если он отсутствует
+    console.log(shareValue); // Выведет значение параметра "share" или null, если он отсутствует
+
+    // Проверяем, что значение shareValue не пустое, и вызываем GETNameFromCard(shareValue)
+    if (shareValue) {
+        //const shareLink = `https://blockadebook.ru/weapon?share=${shareValue}`;
+        GETNameFromCard(shareValue);
+    }
 }
 
 // Обработчик события DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function () {
     getShareValueFromURL();
 });
+
+
+
+
+
+
+
 
 
 function readWeaponSkins() {
