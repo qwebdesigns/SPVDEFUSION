@@ -155,6 +155,14 @@ buttonNames.forEach(function (buttonName) {
 
 
 
+function stringToHex(text) {
+    let hexString = '';
+    for (let i = 0; i < text.length; i++) {
+        const charCode = text.charCodeAt(i).toString(16);
+        hexString += charCode.padStart(4, '0'); // Дополняем код символа нулями, чтобы получить 4 цифры
+    }
+    return hexString;
+}
 
 function getShareLink(button) {
     // Получение значения атрибута "share" из кнопки
@@ -162,11 +170,11 @@ function getShareLink(button) {
 
     // Проверка наличия значения атрибута "share"
     if (shareValue) {
-        // Заменяем пробелы на нижнее подчеркивание в значении "share"
-        const cleanedShareValue = shareValue.replace(/\s+/g, '_');
+        // Кодируем значение атрибута в 16-ричный код
+        const encodedShareValue = stringToHex(shareValue).replace(/\s+/g, '_');
 
         // Создание ссылки с полученным значением атрибута "share" (с нижними подчеркиваниями, если есть пробелы)
-        const link = `https://qwebdesigns.github.io/SPVDEFUSION/maps?share=${cleanedShareValue}`;
+        const link = `https://qwebdesigns.github.io/SPVDEFUSION/skins?share=${encodedShareValue}`;
         console.warn(link);
 
         // Копируем ссылку в буфер обмена
@@ -178,6 +186,9 @@ function getShareLink(button) {
         console.warn('Ссылка не сработала');
     }
 }
+
+
+
 
 function copyToClipboard(text) {
     const textArea = document.createElement('textarea');

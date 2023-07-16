@@ -59,40 +59,44 @@ $(document).ready(function () {
     //});
 });
 
+function hexToString(hex) {
+    let string = '';
+    for (let i = 0; i < hex.length; i += 4) {
+        const charCode = parseInt(hex.substr(i, 4), 16);
+        string += String.fromCharCode(charCode);
+    }
+    return string;
+}
 
 async function getShareValueFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const shareValue = urlParams.get('share');
+    console.log(shareValue); // Выведет значение параметра "share" или null, если он отсутствует
 
-    // Декодируем значение shareValue, если оно не пустое
-    const decodedShareValue = shareValue ? decodeURIComponent(decodeURIComponent(shareValue)): null;
-    console.log(decodedShareValue); // Выведет значение параметра "share" с декодированными символами или null, если он отсутствует
-
-    // Проверяем, что значение decodedShareValue не пустое
-    if (decodedShareValue) {
+    // Проверяем, что значение shareValue не пустое
+    if (shareValue) {
         alert('Использованная вами ссылка на оружие загружается.. Подождите секунду..');
 
         // Вместо простого тайм-аута, вам нужно получить данные для jsonData из асинхронного источника, например, с помощью AJAX запроса
         // Пример с тайм-аутом в 3 секунды для демонстрации
         await new Promise(resolve => setTimeout(resolve, 3000));
 
-        console.log('Обратная замена пробелов:');
-        console.log(decodedShareValue);
+        console.log('Значение в 16-ричном коде:');
+        console.log(shareValue);
 
-        // После получения данных или выполнения асинхронных операций, вызываем GETNameFromCard(decodedShareValue)
+        // Обратное преобразование из 16-ричного кода в русский текст
+        const russianShareValue = hexToString(shareValue);
+        console.log('Обратное преобразование:');
+        console.log(russianShareValue);
+
+        // После получения данных или выполнения асинхронных операций, вызываем GETNameFromCard(russianShareValue)
         if (jsonData) {
-            GETNameFromCard(decodedShareValue);
+            GETNameFromCard(russianShareValue);
         } else {
             console.log('jsonData is empty');
         }
     }
 }
-
-
-// Обработчик события DOMContentLoaded
-document.addEventListener('DOMContentLoaded', async function () {
-    await getShareValueFromURL();
-});
 
 
 
