@@ -81,7 +81,7 @@ async function getShareValueFromURL() {
 
         // После получения данных или выполнения асинхронных операций, вызываем GETNameFromCard(shareValue)
         if (jsonData) {
-            GETNameFromCard(shareValue);
+            GETNameFromCard(originalShareValue);
         } else {
             console.log('jsonData is empty');
         }
