@@ -54,7 +54,9 @@ $(document).ready(function () {
     });
     
     readWeaponSkins();
-    
+    document.addEventListener('DOMContentLoaded', function () {
+        getShareValueFromURL();
+    });
 });
 
 
@@ -72,9 +74,7 @@ function getShareValueFromURL() {
 }
 
 // Обработчик события DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function () {
-    getShareValueFromURL();
-});
+
 
 
 
