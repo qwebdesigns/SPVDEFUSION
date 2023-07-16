@@ -153,72 +153,42 @@ buttonNames.forEach(function (buttonName) {
 
 
 
-
-
-
-
-function transliterate(text) {
-    const cyrillic = {
-        а: 'a',
-        б: 'b',
-        в: 'v',
-        г: 'g',
-        д: 'd',
-        е: 'e',
-        ё: 'e',
-        ж: 'zh',
-        з: 'z',
-        и: 'i',
-        й: 'y',
-        к: 'k',
-        л: 'l',
-        м: 'm',
-        н: 'n',
-        о: 'o',
-        п: 'p',
-        р: 'r',
-        с: 's',
-        т: 't',
-        у: 'u',
-        ф: 'f',
-        х: 'kh',
-        ц: 'ts',
-        ч: 'ch',
-        ш: 'sh',
-        щ: 'shch',
-        ы: 'y',
-        э: 'e',
-        ю: 'yu',
-        я: 'ya',
-        ь: '',
-        ъ: '',
-    };
-
-    return text.replace(/[а-яёЁьъ]/g, (match) => cyrillic[match] || match);
+function stringToHex(text) {
+    let hexString = '';
+    for (let i = 0; i < text.length; i++) {
+        const charCode = text.charCodeAt(i).toString(16);
+        hexString += charCode.padStart(4, '0'); // Дополняем код символа нулями, чтобы получить 4 цифры
+    }
+    return hexString;
 }
 
-function getShareLink(button) {
-    // Получение значения атрибута "share" из кнопки
-    const shareValue = button.getAttribute('share');
+async function getShareValueFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const shareValue = urlParams.get('share');
+    console.log(shareValue); // Выведет значение параметра "share" или null, если он отсутствует
 
-    // Проверка наличия значения атрибута "share"
+    // Проверяем, что значение shareValue не пустое
     if (shareValue) {
-        // Транслитерируем значение атрибута на латиницу, если оно на русском
-        const cleanedShareValue = transliterate(shareValue).replace(/\s+/g, '_');
+        alert('Использованная вами ссылка на скин загружается.. Подождите секунду..');
 
-        // Создание ссылки с полученным значением атрибута "share" (с нижними подчеркиваниями, если есть пробелы)
-        const link = `https://qwebdesigns.github.io/SPVDEFUSION/skins?share=${cleanedShareValue}`;
-        console.warn(link);
+        // Вместо простого тайм-аута, вам нужно получить данные для jsonData из асинхронного источника, например, с помощью AJAX запроса
+        // Пример с тайм-аутом в 3 секунды для демонстрации
+        await new Promise(resolve => setTimeout(resolve, 3000));
 
-        // Копируем ссылку в буфер обмена
-        copyToClipboard(link);
+        console.log('Значение в 16-ричном коде:');
+        const hexValue = stringToHex(shareValue);
+        console.log(hexValue);
 
-        // Сообщаем пользователю, что ссылка была скопирована
-        alert('Ссылка скопирована в буфер обмена.');
-    } else {
-        console.warn('Ссылка не сработала');
+        // После получения данных или выполнения асинхронных операций, вызываем GETNameFromCard(shareValue)
+        if (jsonData) {
+            GETNameFromCard(shareValue);
+        } else {
+            console.log('jsonData is empty');
+        }
     }
 }
+
+
 
 
 function copyToClipboard(text) {

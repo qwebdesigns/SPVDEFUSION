@@ -40,44 +40,13 @@ $(document).ready(function () {
 });
 
 
-function transliterate(text) {
-    const cyrillic = {
-        а: 'a',
-        б: 'b',
-        в: 'v',
-        г: 'g',
-        д: 'd',
-        е: 'e',
-        ё: 'e',
-        ж: 'zh',
-        з: 'z',
-        и: 'i',
-        й: 'y',
-        к: 'k',
-        л: 'l',
-        м: 'm',
-        н: 'n',
-        о: 'o',
-        п: 'p',
-        р: 'r',
-        с: 's',
-        т: 't',
-        у: 'u',
-        ф: 'f',
-        х: 'kh',
-        ц: 'ts',
-        ч: 'ch',
-        ш: 'sh',
-        щ: 'shch',
-        ы: 'y',
-        э: 'e',
-        ю: 'yu',
-        я: 'ya',
-        ь: '',
-        ъ: '',
-    };
-
-    return text.replace(/[а-яёЁ]/ig, (match) => cyrillic[match] || match);
+function hexToString(hex) {
+    let string = '';
+    for (let i = 0; i < hex.length; i += 4) {
+        const charCode = parseInt(hex.substr(i, 4), 16);
+        string += String.fromCharCode(charCode);
+    }
+    return string;
 }
 
 async function getShareValueFromURL() {
@@ -93,17 +62,23 @@ async function getShareValueFromURL() {
         // Пример с тайм-аутом в 3 секунды для демонстрации
         await new Promise(resolve => setTimeout(resolve, 3000));
 
-        console.log('Обратная замена пробелов:');
+        console.log('Значение в 16-ричном коде:');
         console.log(shareValue);
 
-        // После получения данных или выполнения асинхронных операций, вызываем GETNameFromCard(shareValue)
+        // Обратное преобразование из 16-ричного кода в русский текст
+        const russianShareValue = hexToString(shareValue);
+        console.log('Обратное преобразование:');
+        console.log(russianShareValue);
+
+        // После получения данных или выполнения асинхронных операций, вызываем GETNameFromCard(russianShareValue)
         if (jsonData) {
-            GETNameFromCard(shareValue);
+            GETNameFromCard(russianShareValue);
         } else {
             console.log('jsonData is empty');
         }
     }
 }
+
 
 
 
