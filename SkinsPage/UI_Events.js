@@ -157,7 +157,45 @@ buttonNames.forEach(function (buttonName) {
 
 
 
+function transliterate(text) {
+    const cyrillic = {
+        а: 'a',
+        б: 'b',
+        в: 'v',
+        г: 'g',
+        д: 'd',
+        е: 'e',
+        ё: 'e',
+        ж: 'zh',
+        з: 'z',
+        и: 'i',
+        й: 'y',
+        к: 'k',
+        л: 'l',
+        м: 'm',
+        н: 'n',
+        о: 'o',
+        п: 'p',
+        р: 'r',
+        с: 's',
+        т: 't',
+        у: 'u',
+        ф: 'f',
+        х: 'kh',
+        ц: 'ts',
+        ч: 'ch',
+        ш: 'sh',
+        щ: 'shch',
+        ы: 'y',
+        э: 'e',
+        ю: 'yu',
+        я: 'ya',
+        ь: '',
+        ъ: '',
+    };
 
+    return text.replace(/[а-яёЁьъ]/g, (match) => cyrillic[match] || match);
+}
 
 function getShareLink(button) {
     // Получение значения атрибута "share" из кнопки
@@ -165,8 +203,8 @@ function getShareLink(button) {
 
     // Проверка наличия значения атрибута "share"
     if (shareValue) {
-        // Заменяем пробелы на нижнее подчеркивание в значении "share"
-        const cleanedShareValue = shareValue.replace(/\s+/g, '_');
+        // Транслитерируем значение атрибута на латиницу, если оно на русском
+        const cleanedShareValue = transliterate(shareValue).replace(/\s+/g, '_');
 
         // Создание ссылки с полученным значением атрибута "share" (с нижними подчеркиваниями, если есть пробелы)
         const link = `https://qwebdesigns.github.io/SPVDEFUSION/skins?share=${cleanedShareValue}`;
@@ -181,6 +219,7 @@ function getShareLink(button) {
         console.warn('Ссылка не сработала');
     }
 }
+
 
 function copyToClipboard(text) {
     const textArea = document.createElement('textarea');
