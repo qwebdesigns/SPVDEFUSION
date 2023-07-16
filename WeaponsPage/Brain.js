@@ -61,9 +61,14 @@ $(document).ready(function () {
 
 function getShareValueFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    //return urlParams.get('share');
-    console.error(urlParams.get('share'));
+    const shareValue = urlParams.get('share');
+    console.log("linkshare = "+shareValue); // Выведет значение параметра "share" или null, если он отсутствует
 }
+
+// Обработчик события DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function () {
+    getShareValueFromURL();
+});
 
 
 function readWeaponSkins() {
