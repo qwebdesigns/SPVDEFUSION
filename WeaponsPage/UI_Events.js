@@ -158,12 +158,14 @@ buttonNames.forEach(function (buttonName) {
 function getShareLink(button) {
     // Получение значения атрибута "share" из кнопки
     const shareValue = button.getAttribute('share');
-    console.warn('Ссылка не 123131231231');
 
     // Проверка наличия значения атрибута "share"
     if (shareValue) {
-        // Создание ссылки с полученным значением атрибута "share"
-        const link = `https://qwebdesigns.github.io/SPVDEFUSION/weapons?share=${shareValue}`;
+        // Заменяем пробелы на нижнее подчеркивание в значении "share"
+        const cleanedShareValue = shareValue.replace(/\s+/g, '_');
+
+        // Создание ссылки с полученным значением атрибута "share" (с нижними подчеркиваниями, если есть пробелы)
+        const link = `https://qwebdesigns.github.io/SPVDEFUSION/weapons?share=${cleanedShareValue}`;
         console.warn(link);
     } else {
         console.warn('Ссылка не сработала');

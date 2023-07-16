@@ -67,12 +67,19 @@ async function getShareValueFromURL() {
 
     // Проверяем, что значение shareValue не пустое
     if (shareValue) {
+        alert('Использованная вами ссылка на оружие загружается.. Подождите секунду..');
+
         // Вместо простого тайм-аута, вам нужно получить данные для jsonData из асинхронного источника, например, с помощью AJAX запроса
         // Пример с тайм-аутом в 3 секунды для демонстрации
         await new Promise(resolve => setTimeout(resolve, 3000));
 
+        // Обратная замена нижних подчеркиваний на пробелы в значении "share"
+        const originalShareValue = shareValue.replace(/_/g, ' ');
+
+        console.log('Обратная замена пробелов:');
+        console.log(originalShareValue);
+
         // После получения данных или выполнения асинхронных операций, вызываем GETNameFromCard(shareValue)
-        
         if (jsonData) {
             GETNameFromCard(shareValue);
         } else {
@@ -80,6 +87,7 @@ async function getShareValueFromURL() {
         }
     }
 }
+
 
 // Обработчик события DOMContentLoaded
 document.addEventListener('DOMContentLoaded', async function () {
