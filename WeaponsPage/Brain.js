@@ -2,12 +2,14 @@ var jsonData;
 var skinsData;
 var shareValue;
 
+
+
 $(document).ready(function () {
     var spreadsheetId = '1FblgSUb0Bb5BqU3xmYv_f8_ConUytYq3Uc8_V8Qcr-E';
     var apiKey = 'AIzaSyDYlCMZ-qIiTlwHLYZquW9qQAQlG3khikA';
     var sheetName = 'ТТХ';
     var column = 'D';
-    shareValue = getShareValueFromURL();
+    //shareValue = getShareValueFromURL();
     // Получение "глубины" столбца D
     var depthUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!${column}:${column}?key=${apiKey}`;
     $.get(depthUrl, function (response) {
@@ -57,11 +59,12 @@ $(document).ready(function () {
 
 
 
-
 function getShareValueFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('share');
+    //return urlParams.get('share');
+    console.error(urlParams.get('share'));
 }
+
 
 function readWeaponSkins() {
     var spreadsheetId = '1FblgSUb0Bb5BqU3xmYv_f8_ConUytYq3Uc8_V8Qcr-E';
