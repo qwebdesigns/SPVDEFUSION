@@ -174,7 +174,7 @@ function getShareLink(button) {
         const encodedShareValue = stringToHex(shareValue).replace(/\s+/g, '_');
 
         // Создание ссылки с полученным значением атрибута "share" (с нижними подчеркиваниями, если есть пробелы)
-        const link = `https://qwebdesigns.github.io/SPVDEFUSION/skins?share=${encodedShareValue}`;
+        const link = `https://qwebdesigns.github.io/SPVDEFUSION/maps?share=${encodedShareValue}`;
         console.warn(link);
 
         // Копируем ссылку в буфер обмена
