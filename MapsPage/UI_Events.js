@@ -166,7 +166,7 @@ function getShareLink(button) {
         const cleanedShareValue = shareValue.replace(/\s+/g, '_');
 
         // Создание ссылки с полученным значением атрибута "share" (с нижними подчеркиваниями, если есть пробелы)
-        const link = `https://qwebdesigns.github.io/SPVDEFUSION/weapons?share=${cleanedShareValue}`;
+        const link = `https://qwebdesigns.github.io/SPVDEFUSION/maps?share=${cleanedShareValue}`;
         console.warn(link);
 
         // Копируем ссылку в буфер обмена
