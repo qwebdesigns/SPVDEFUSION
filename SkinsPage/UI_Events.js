@@ -159,7 +159,37 @@ buttonNames.forEach(function (buttonName) {
 
 
 
+function getShareLink(button) {
+    // Получение значения атрибута "share" из кнопки
+    const shareValue = button.getAttribute('share');
 
+    // Проверка наличия значения атрибута "share"
+    if (shareValue) {
+        // Заменяем пробелы на нижнее подчеркивание в значении "share"
+        const cleanedShareValue = shareValue.replace(/\s+/g, '_');
+
+        // Создание ссылки с полученным значением атрибута "share" (с нижними подчеркиваниями, если есть пробелы)
+        const link = `https://qwebdesigns.github.io/SPVDEFUSION/weapons?share=${cleanedShareValue}`;
+        console.warn(link);
+
+        // Копируем ссылку в буфер обмена
+        copyToClipboard(link);
+
+        // Сообщаем пользователю, что ссылка была скопирована
+        alert('Ссылка скопирована в буфер обмена.');
+    } else {
+        console.warn('Ссылка не сработала');
+    }
+}
+
+function copyToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+}
 
 
 

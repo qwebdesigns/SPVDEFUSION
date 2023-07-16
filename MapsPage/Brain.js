@@ -1,5 +1,6 @@
 var jsonData;
 var skinsData;
+var shareValue;
 
 $(document).ready(function () {
     var spreadsheetId = '1WkxonETpPrDme6i3ZTt1ddB8e9YI19KBST1qTLl8BFs';
@@ -36,6 +37,39 @@ $(document).ready(function () {
 });
 
 
+async function getShareValueFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const shareValue = urlParams.get('share');
+    console.log(shareValue); // Выведет значение параметра "share" или null, если он отсутствует
+
+    // Проверяем, что значение shareValue не пустое
+    if (shareValue) {
+        alert('Использованная вами ссылка на карту загружается.. Подождите секунду..');
+
+        // Вместо простого тайм-аута, вам нужно получить данные для jsonData из асинхронного источника, например, с помощью AJAX запроса
+        // Пример с тайм-аутом в 3 секунды для демонстрации
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        // Обратная замена нижних подчеркиваний на пробелы в значении "share"
+        const originalShareValue = shareValue.replace(/_/g, ' ');
+
+        console.log('Обратная замена пробелов:');
+        console.log(originalShareValue);
+
+        // После получения данных или выполнения асинхронных операций, вызываем GETNameFromCard(shareValue)
+        if (jsonData) {
+            GETNameFromCard(originalShareValue);
+        } else {
+            console.log('jsonData is empty');
+        }
+    }
+}
+
+
+// Обработчик события DOMContentLoaded
+document.addEventListener('DOMContentLoaded', async function () {
+    await getShareValueFromURL();
+});
 
 
 
@@ -359,6 +393,8 @@ function GETNameFromCard(card) {
         OpenWindowTwo();
     }
     modifyArrayElements(matchingRow.ImagesROW);
+
+    document.getElementById('ShareButton').setAttribute('share', weaponName);
 
 }
 
