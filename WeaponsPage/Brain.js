@@ -54,9 +54,6 @@ $(document).ready(function () {
     });
     
     readWeaponSkins();
-    if (jsonData) {
-        getShareValueFromURL();
-    }
     //document.addEventListener('DOMContentLoaded', function () {
         
     //});
@@ -79,6 +76,23 @@ function getShareValueFromURL() {
 // Обработчик события DOMContentLoaded
 
 
+function onWindowLoad() { // Выведет значение параметра "share", если оно есть в адресной строке, иначе - null
+
+    // Отправляем запрос на PHP-скрипт для проверки значения "share"
+    
+        fetch(`check_share.php?share=${encodeURIComponent(shareValue)}`)
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+    
+}
+
+// Обработчик события DOMContentLoaded
+document.addEventListener('DOMContentLoaded', onWindowLoad);
 
 
 
