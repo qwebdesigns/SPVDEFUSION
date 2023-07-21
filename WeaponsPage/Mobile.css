@@ -1,5 +1,4 @@
-@media (min-width: 768px) {
-
+@media (max-width: 767px) {
     .Window_One {
         height: 100vh;
         width: 100vw;
@@ -33,25 +32,29 @@
 
     .header {
         width: 100%;
-        height: 5vh;
-        min-height: 5vh;
+        height: max-content;
+        min-height: 18vh;
+        
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+        flex-wrap: nowrap;
     }
 
     .LogoHead {
-        width: 40%;
-        height: 100%;
+        width: 100%;
+        height: 5vh;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         align-content: center;
         flex-wrap: nowrap;
         flex-direction: row;
     }
 
     .LogoHead p {
-        margin: 0 0 0 2vw;
         color: var(--te);
         font-family: 'ss';
         font-size: 4vh;
@@ -59,27 +62,30 @@
     }
 
     .HeadButtons {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
-        align-content: center;
-        flex-wrap: nowrap;
-        flex: 1;
-        overflow: hidden;
-        user-select: none;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            align-content: center;
+            flex-wrap: wrap;
+            width: 95vw;
+            height: max-content;
+            overflow: hidden;
+            user-select: none;
+            gap: 5vw;
+            padding: 1vh 2.5vw;
     }
 
     .HeadButtons div {
         border-radius: 100px;
         box-shadow: 0px 0px 0px 2px var(--ak);
-        width: 8vw;
+        width: 28vw;
+        height: 4vh;
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--te);
         font-family: 'ss';
-        height: calc(100% - 6px);
         font-size: 2.7vh;
     }
 
@@ -262,7 +268,7 @@
         margin: 5vh 0vh 2vh 0vw;
         width: 100%;
         font-family: 'ss';
-        font-size: 5vh;
+        font-size: 4vh;
         color: var(--te);
         display: flex;
         align-items: center;
@@ -292,7 +298,7 @@
         align-items: center;
         align-content: center;
         flex-wrap: nowrap;
-        height: 81vh;
+        max-height: 81vh;
         margin-top: 2vh;
     }
 
@@ -301,33 +307,32 @@
         height: min-content;
         display: flex;
         overflow: auto;
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
         align-content: center;
         flex-wrap: nowrap;
         gap: 4vw;
-        height: 81vh;
+        max-height: 81vh;
         margin-top: 2vh;
     }
 
     .SettingsZone3 {
-        width: 100%;
+        width: 100vw;
+        max-width: 100vw;
         height: min-content;
         display: flex;
-        overflow: auto;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
         align-content: center;
         flex-wrap: nowrap;
         gap: 4vw;
-        height: 81vh;
+        max-height: 81vh;
         margin-top: 2vh;
     }
-
     .MainSettingSort {
-        max-width: 25vw;
+        width: 100vw;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -335,8 +340,8 @@
         align-content: center;
         flex-wrap: nowrap;
         width: max-content;
-        height: max-content;
-        overflow: hidden;
+        height: min-content;
+        margin: 2vh 0vh;
     }
 
     .SortSatt {
@@ -349,7 +354,7 @@
         font-family: 'ss';
         font-size: 3vh;
         position: relative;
-        width: 20vw;
+        width: 65vw;
         height: 5vh;
         min-height: 5vh;
         margin: 1.5vh 0vh;
@@ -375,20 +380,18 @@
 
 
     .ButtonTopsSearch {
-        position: absolute;
-        bottom: 0;
-        width: 20vw;
-        border: 2px solid var(--ak);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--te);
-        font-family: 'ss';
-        font-size: 3vh;
-        height: 5vh;
-        min-height: 5vh;
-        margin: 1.5vh 0vh;
-        user-select: none;
+            width: 78vw;
+            border: 3px solid var(--ak);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--te);
+            font-family: 'ss';
+            font-size: 3vh;
+            height: 5vh;
+            min-height: 5vh;
+            margin: 4.5vh 0vh;
+            user-select: none;
 
     }
 
@@ -398,12 +401,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 30vh;
+        height: 10vh;
     }
 
     .SearchInput {
-        width: 20vw;
-        height: 5vh;
+        width: 55vw;
+        height: 6vh;
         border-radius: 100px;
         outline: none;
         padding: 0vh 4vh 0vh 2vh;
@@ -420,7 +423,7 @@
         z-index: 99;
         position: absolute;
         width: 0;
-        transform: translateX(9.5vw);
+        transform: translateX(24.5vw);
         font-size: 4vh;
         font-weight: 700;
     }
@@ -436,7 +439,7 @@
 
     .ResultCard {
         height: max-content;
-        width: 60%;
+        width: 96%;
         max-height: 40vh;
         background-color: var(--li);
         display: flex;
@@ -475,15 +478,18 @@
     }
 
     .NameRow {
-        font-size: 3vh;
+        font-size: 2.5vh;
         font-family: 'ss';
         color: var(--te);
         margin-left: 1vw;
+        max-width: 44%;
+        white-space: nowrap;
+        overflow: auto;
     }
 
     .OtherLabelRow {
         height: 100%;
-        max-width: 50%;
+        max-width: 55%;
         flex: 1;
         display: flex;
         align-items: center;
@@ -521,14 +527,15 @@
     }
 
     .OLR_img {
-        width: 2vw;
+        width: 3vw;
         max-width: 4vw;
         padding: 0vh 1vw;
+        display: none;
     }
 
     .TypeWeaponRR {
         font-family: 'ss';
-        font-size: 3vh;
+        font-size: 2.2vh;
         color: var(--te);
         max-width: 40%;
         flex: 1;
@@ -1296,4 +1303,6 @@
     .ResultRow:hover {
         cursor: pointer;
     }
+
+
 }

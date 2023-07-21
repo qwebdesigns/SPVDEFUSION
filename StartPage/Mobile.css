@@ -1,19 +1,8 @@
-/* Большие настольные компьютеры и ноутбуки 
-@media (min-width: 1200px) {}
-*/
-/* Альбомные планшеты и средние настольные компьютеры
-@media (min-width: 992px) and (max-width: 1199px) {}
- */
-/* Портретные планшеты и маленькие настольные компьютеры 
-@media (min-width: 768px) and (max-width: 991px) {}
-*/
-/* Альбомные телефоны и портретные планшеты 
-@media (max-width: 767px) {}
-*/
-/* Портретные телефоны и меньше 
-@media (max-width: 360px) {}
-*/
-@media (min-width: 768px) {
+@media (max-width: 767px) {
+    body {
+        background-color: var(--ba);
+    }
+
     article {
         height: 100vh;
         width: 100vw;
@@ -32,8 +21,8 @@
     }
 
     .logo {
-        height: 35%;
-        width: 50%;
+        height: 25%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -53,17 +42,23 @@
 
     .CardZone {
         width: 100%;
-        flex: 1;
+        height: 60vh;
+        max-height: 60vh;
+        overflow: auto;
+        margin: 5vh 0vh;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
+        justify-content: center;
         align-content: center;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 5vw;
     }
 
     .HelloCard {
-        width: 20%;
+        width: max-content;
+        min-width: 40vw;
+        max-width: 40%;
         height: max-content;
         display: flex;
         flex-direction: column;
@@ -75,7 +70,7 @@
     }
 
     .MainRect {
-        width: 20vw;
+        width: 40vw;
         height: 21vh;
         background-color: var(--li);
         position: relative;
@@ -130,8 +125,8 @@
         left: 0;
         top: 0;
 
-        border-top: 4vw solid var(--ba);
-        border-right: 4vw solid var(--tr);
+        border-top: 6vw solid var(--ba);
+        border-right: 6vw solid var(--tr);
         transition: all .1s ease-in;
         z-index: 55;
     }
@@ -143,8 +138,8 @@
         right: 0;
         bottom: 0;
 
-        border-bottom: 4vw solid var(--ba);
-        border-left: 4vw solid var(--tr);
+        border-bottom: 6vw solid var(--ba);
+        border-left: 6vw solid var(--tr);
         transform: rotate(0deg);
         transition: all .1s ease-in;
         z-index: 55;
