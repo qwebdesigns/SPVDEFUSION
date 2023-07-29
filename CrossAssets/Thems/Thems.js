@@ -1,29 +1,4 @@
-/*
-function changeTheme(theme) {
-    var href;
-    switch (theme) {
-        case 'Winter':
-            href = './CrossAssets/Thems/Winter.css';
-            break;
-        case '8 марта':
-            href = './CrossAssets/Thems/8marta.css';
-            break;
-        case 'Dracula':
-            href = './CrossAssets/Thems/Dracula.css';
-            break;
-        case 'Лето':
-            href = './CrossAssets/Thems/Summer.css';
-            break;
-        case 'Классическая':
-            href = './CrossAssets/Thems/Classik.css';
-            break;
-        case 'Nuar':
-            href = './CrossAssets/Thems/Nuar.css';
-            break;
-    }
-    document.getElementById('ThemsLink').href = href;
-}
-*/
+
 // Функция для сохранения и загрузки выбранной темы
 function changeTheme(theme) {
     var href;
@@ -52,6 +27,13 @@ function changeTheme(theme) {
         case 'RetroWave':
             href = './CrossAssets/Thems/RetroWave.css';
             break;
+        case 'Trifolium':
+            href = './CrossAssets/Thems/Trifolium.css';
+            break;
+        case 'Harun':
+            href = './CrossAssets/Thems/Harun.css';
+            break;
+
             
     }
     document.getElementById('ThemsLink').href = href;
@@ -180,14 +162,21 @@ function setScale(value) {
             break;
     }
 
+    //if (value === '1' || value === '2') {
+     //   fontScale = parseFloat(value);
+    //}
+
+    //var originalFontHeight = 3.5; // Original font height in vh units
+
     var elements = document.getElementsByClassName('card');
     for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
 
         var newWidth = width * originalWidth;
-        var newHeight = height * originalHeight;
+        var newHeight = height * originalHeight; // Calculate the new font size
+
         element.style.width = newWidth + 'px';
-        element.style.height = newHeight + 'px';
+        element.style.height = newHeight + 'px'; // Set the new font size in vh units
     }
 
     // Сохраняем выбранное значение в localStorage
@@ -201,6 +190,7 @@ function setScale(value) {
         console.log('Установлен атрибут checked для радио-кнопки:', value);
     }
 }
+
 
 var scaleOptions = document.getElementsByName('radio');
 

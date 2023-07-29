@@ -397,18 +397,29 @@ function findSravnenieElement() {
 
 
 
-function handleButtonClick(button,hValue) {
-    var buttons = button.parentElement.querySelectorAll(".SSTT2");
+function handleButtonClick(button, value) {
+    var buttons = document.querySelectorAll(".SSTT2");
 
     buttons.forEach(function (btn) {
-        btn.classList.remove("buttonTops1");
+        if (btn === button) {
+            // Проверяем, нажата ли уже данная кнопка
+            if (button.classList.contains("buttonTops1")) {
+                // Если кнопка уже была активна, убираем класс и сбрасываем выбранное значение
+                button.classList.remove("buttonTops1");
+                handleGroup1Click("");
+            } else {
+                // Если кнопка не была активна, устанавливаем класс и передаем значение в функцию handleGroup1Click
+                buttons.forEach(function (btn) {
+                    btn.classList.remove("buttonTops1");
+                });
+                button.classList.add("buttonTops1");
+                handleGroup1Click(value);
+            }
+        }
     });
-
-    button.classList.add("buttonTops1");
-
-    // Далее можно вызвать вашу функцию filterWeaponsByType() с передачей выбранного значения
-    handleGroup1Click(hValue);
 }
+
+
 
 
 function handleButtonClick2(button, hValue) {
@@ -438,7 +449,18 @@ function handleButtonClick3(button, value) {
     handleGroup3Click(value);
 }
 
+function handleButtonClick4(button, value) {
+    var buttons = button.parentElement.querySelectorAll(".SortSatt");
 
+    buttons.forEach(function (btn) {
+        btn.classList.remove("buttonTops1");
+    });
+
+    button.classList.add("buttonTops1");
+
+    // Далее можно вызвать вашу функцию filterWeaponsByType() с передачей выбранного значения
+    handleGroup4Click(value);
+}
 
 function OpenWindowTwo() {
     document.querySelector('.Window_One').hidden = true;
@@ -446,6 +468,7 @@ function OpenWindowTwo() {
     document.getElementById('logoandback').innerHTML = "Вернуться";
 };
 
+/*
 function OpenSkinsZone() {
     var CSWeap = document.querySelector('#containerSkinwWpis');
 
@@ -455,7 +478,7 @@ function OpenSkinsZone() {
         CSWeap.hidden = true;
     }
 }
-
+*/
 
 
 function BackToOne() {

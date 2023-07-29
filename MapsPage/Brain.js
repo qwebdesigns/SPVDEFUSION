@@ -1,7 +1,11 @@
 var jsonData;
 var skinsData;
 var shareValue;
-
+Toastify({
+    text: "Идет загрузка данных...",
+    duration: 1500,
+    close: true
+}).showToast();
 $(document).ready(function () {
     var spreadsheetId = '1WkxonETpPrDme6i3ZTt1ddB8e9YI19KBST1qTLl8BFs';
     var apiKey = 'AIzaSyCnXboKn76sNySWx3KZmPJPmDxC475iT_w';
@@ -34,6 +38,15 @@ $(document).ready(function () {
             console.table(jsonData);
         });
     });
+    setTimeout(function () {
+
+        Toastify({
+            text: "Данные успешно загружены!",
+            duration: 2000,
+            close: true
+        }).showToast();
+
+    }, 500);
 });
 
 function hexToString(hex) {
@@ -52,7 +65,11 @@ async function getShareValueFromURL() {
 
     // Проверяем, что значение shareValue не пустое
     if (shareValue) {
-        alert('Использованная вами ссылка на карту загружается.. Подождите секунду..');
+       Toastify({
+           text: 'Использованная вами ссылка на карту загружается..\nПодождите секунду..',
+           duration: 4000, // Продолжительность отображения сообщения в миллисекундах
+           close: true
+       }).showToast();
 
         // Вместо простого тайм-аута, вам нужно получить данные для jsonData из асинхронного источника, например, с помощью AJAX запроса
         // Пример с тайм-аутом в 3 секунды для демонстрации

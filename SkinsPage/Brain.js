@@ -1,6 +1,11 @@
 var jsonData;
 var skinsData;
 var shareValue;
+Toastify({
+    text: "Идет загрузка данных...",
+    duration: 1500,
+    close: true
+}).showToast();
 
 $(document).ready(function () {
     var spreadsheetId = '1NYl838ERKhx42vrycL6bKxxWEpWwCbFW1OFQ0ePGrw0';
@@ -36,7 +41,15 @@ $(document).ready(function () {
             console.table(jsonData);
         });
     });
-    //readWeaponSkins();
+    setTimeout(function () {
+
+        Toastify({
+            text: "Данные успешно загружены!",
+            duration: 2000,
+            close: true
+        }).showToast();
+
+    }, 500);
 });
 
 
@@ -56,7 +69,11 @@ async function getShareValueFromURL() {
 
     // Проверяем, что значение shareValue не пустое
     if (shareValue) {
-        alert('Использованная вами ссылка на скин загружается.. Подождите секунду..');
+        Toastify({
+            text: 'Использованная вами ссылка на скин загружается..\nПодождите секунду..',
+            duration: 4000, // Продолжительность отображения сообщения в миллисекундах
+            close: true
+        }).showToast();
 
         // Вместо простого тайм-аута, вам нужно получить данные для jsonData из асинхронного источника, например, с помощью AJAX запроса
         // Пример с тайм-аутом в 3 секунды для демонстрации

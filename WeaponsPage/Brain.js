@@ -2,6 +2,12 @@ var jsonData;
 var skinsData;
 var shareValue;
 
+Toastify({
+    text: "Идет загрузка данных...",
+    duration: 1500,
+    close: true
+}).showToast();
+
 
 
 $(document).ready(function () {
@@ -41,22 +47,32 @@ $(document).ready(function () {
                 'Cost': row[13],
                 'Image': row[14],
                 'Badge': row[15],
-                'StockTimeNoArmor': row[16],
-                'StockTimeNormal': row[17],
-                'StockTimeReinforced': row[18],
-                'FullTimeNoArmor': row[19],
-                'FullTimeNormal': row[20],
-                'FullTimeReinforced': row[21]
+                'StockNoArmorHead': row[16],            // Сток | Без брони | Голова
+                'StockNormalArmorHead': row[17],        // Сток | Обыч | Голова
+                'StockReinforcedArmorHead': row[18],    // Сток | Укреп | Голова
+                'FullNoArmorHead': row[19],             // Фулл | Без брони | Голова
+                'FullNormalArmorHead': row[20],         // Фулл | Обыч | Голова
+                'FullReinforcedArmorHead': row[21],     // Фулл | Укреп | Голова
+                'StockNoArmorBody': row[22],            // Сток | Без брони | Тело
+                'StockNormalArmorBody': row[23],        // Сток | Обыч | Тело
+                'StockReinforcedArmorBody': row[24],    // Сток | Укреп | Тело
+                'FullNoArmorBody': row[25],             // Фулл | Без брони | Тело
+                'FullNormalArmorBody': row[26],         // Фулл | Обыч | Тело
+                'FullReinforcedArmorBod': row[27]       // Фулл | Укреп | Тело
             }));
 
             //console.table(jsonData);
         });
     });
-    
-    readWeaponSkins();
-    //document.addEventListener('DOMContentLoaded', function () {
-    //getShareValueFromURL()
-    //});
+    setTimeout(function () {
+
+    Toastify({
+        text: "Данные успешно загружены!",
+        duration: 2000,
+        close: true
+    }).showToast();
+
+    }, 500);
 });
 
 function hexToString(hex) {
@@ -75,7 +91,11 @@ async function getShareValueFromURL() {
 
     // Проверяем, что значение shareValue не пустое
     if (shareValue) {
-        alert('Использованная вами ссылка на оружие загружается.. Подождите секунду..');
+        Toastify({
+            text: 'Использованная вами ссылка на оружие загружается..\nПодождите секунду..',
+            duration: 4000, // Продолжительность отображения сообщения в миллисекундах
+            close: true
+        }).showToast();
 
         // Вместо простого тайм-аута, вам нужно получить данные для jsonData из асинхронного источника, например, с помощью AJAX запроса
         // Пример с тайм-аутом в 3 секунды для демонстрации
@@ -105,41 +125,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 
 
-
-function readWeaponSkins() {
-    var spreadsheetId = '1FblgSUb0Bb5BqU3xmYv_f8_ConUytYq3Uc8_V8Qcr-E';
-    var apiKey = 'AIzaSyDYlCMZ-qIiTlwHLYZquW9qQAQlG3khikA';
-    var sheetName = 'Скины Оружий';
-    var column = 'D';
-
-    // Получение "глубины" столбца D
-    var depthUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!${column}:${column}?key=${apiKey}`;
-    $.get(depthUrl, function (response) {
-        var depth = response.values.length;
-
-        // Формирование диапазона
-        var range = `${sheetName}!A2:D${depth + 1}`;
-        var dataUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
-
-        // Получение данных
-        $.get(dataUrl, function (response) {
-            var values = response.values;
-
-            // Преобразование данных в формат JSON
-            skinsData = values.map(row => ({
-                'BaseWeaponName': row[0],
-                'SkinName': row[1],
-                'Edition': row[2],
-                'Image': row[3]
-            }));
-
-            //console.log("Глубина столбца D: " + depth);
-            //console.table(skinsData);
-        });
-    });
-
-    
-}
 
 
 
@@ -278,10 +263,19 @@ function filterWeaponsByType(type) {
 let selectedGroup1Value = '';
 let selectedGroup2Value = '';
 let selectedGroup3Value = '';
+let selectedGroup4Value = '';
 
 function handleGroup1Click(value) {
-    selectedGroup1Value = value;
-    console.log('Selected Group 1 value:', selectedGroup1Value);
+      if (selectedGroup1Value === value) {
+          // Если значение уже совпадает с текущим выбранным, сбрасываем его
+          selectedGroup1Value = '';
+      } else {
+          // Иначе присваиваем новое значение
+          selectedGroup1Value = value;
+      }
+      console.log('Selected Group 1 value:', selectedGroup1Value);
+      // Здесь можно вызвать вашу функцию filterWeaponsByType() с передачей выбранного значения
+      // filterWeaponsByType(selectedGroup1Value);
 }
 
 function handleGroup2Click(value) {
@@ -293,21 +287,10 @@ function handleGroup3Click(value) {
     selectedGroup3Value = value;
     console.log('Selected Group 3 value:', selectedGroup3Value);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function handleGroup4Click(value) {
+    selectedGroup4Value = value;
+    console.log('Selected Group 4 value:', selectedGroup4Value);
+}
 
 
 
@@ -321,13 +304,15 @@ function handleGroup3Click(value) {
 function sortAndPrintStockTimeNoArmor() {
     if (
         selectedGroup2Value === '' ||
-        selectedGroup1Value === '' ||
+        selectedGroup4Value === '' ||
         selectedGroup3Value === ''
     ) {
         // Одна из переменных имеет пустую строку, функция не будет выполняться
         return;
     }
-    document.getElementById("SearchNameLabel").textContent = selectedGroup2Value + " / " + selectedGroup1Value + " / " + selectedGroup3Value;
+    document.getElementById("SearchNameLabel").textContent = selectedGroup4Value + " / " + selectedGroup2Value + " / " + selectedGroup3Value;
+
+    
 
     jsonData.sort((a, b) => {
         const typeA = a.TypeWeapon;
@@ -341,8 +326,8 @@ function sortAndPrintStockTimeNoArmor() {
         }
 
         // New conditions based on selectedGroup2Value and selectedGroup3Value
-        const stockTimeA = getStockTime(a, selectedGroup2Value, selectedGroup3Value);
-        const stockTimeB = getStockTime(b, selectedGroup2Value, selectedGroup3Value);
+        const stockTimeA = getStockTime(a, selectedGroup2Value, selectedGroup3Value, selectedGroup4Value);
+        const stockTimeB = getStockTime(b, selectedGroup2Value, selectedGroup3Value, selectedGroup4Value);
 
         // Add console.log to check the values returned by getStockTime
         //console.log(a.Name+' : '+stockTimeA);
@@ -353,14 +338,15 @@ function sortAndPrintStockTimeNoArmor() {
     });
 
 
-    var resultContainer = document.getElementById("CardZoneMain");
-    resultContainer.innerHTML = "";
+    if (selectedGroup1Value === '') {
+        // Если selectedGroup1Value пустая, просто выводим все оружия без сортировки по типу
+        var resultContainer = document.getElementById("CardZoneMain");
+        resultContainer.innerHTML = "";
 
-    var cloneMainCard = document.getElementById("NodeToClone_MainCard").cloneNode(true);
-    cloneMainCard.id = '';
+        var cloneMainCard = document.getElementById("NodeToClone_MainCard").cloneNode(true);
+        cloneMainCard.id = '';
 
-    jsonData.forEach(function (weapon) {
-        if (weapon.TypeWeapon === selectedGroup1Value) {
+        jsonData.forEach(function (weapon) {
             var card = cloneMainCard.cloneNode(true);
             card.setAttribute("onclick", 'GETNameFromCard(\'' + weapon.Name + '\');');
             var mainCardImage = card.querySelector("#NTC_MC_image");
@@ -368,37 +354,76 @@ function sortAndPrintStockTimeNoArmor() {
 
             mainCardImage.src = "./assets/ItemIcons/" + weapon.Image + ".png";
             mainCardName.textContent = weapon.Name;
-            console.warn(weapon.Name + " : " + weapon.FullTimeReinforced);
+            console.warn(weapon.Name + " : " + weapon.FullReinforcedArmorHead);
             resultContainer.appendChild(card);
-        }
-    });
+        });
 
-    openStandartCard();
+        openStandartCard();
+        return;
+    }
+    else{
+        var resultContainer = document.getElementById("CardZoneMain");
+        resultContainer.innerHTML = "";
+
+        var cloneMainCard = document.getElementById("NodeToClone_MainCard").cloneNode(true);
+        cloneMainCard.id = '';
+
+        jsonData.forEach(function (weapon) {
+            if (weapon.TypeWeapon === selectedGroup1Value) {
+                var card = cloneMainCard.cloneNode(true);
+                card.setAttribute("onclick", 'GETNameFromCard(\'' + weapon.Name + '\');');
+                var mainCardImage = card.querySelector("#NTC_MC_image");
+                var mainCardName = card.querySelector("#NTC_MC_name");
+
+                mainCardImage.src = "./assets/ItemIcons/" + weapon.Image + ".png";
+                mainCardName.textContent = weapon.Name;
+                console.warn(weapon.Name + " : " + weapon.FullReinforcedArmorHead);
+                resultContainer.appendChild(card);
+            }
+        });
+
+        openStandartCard();
+        return;
+    }
 }
 
-function getStockTime(weapon, group2, group3) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getStockTime(weapon, group2, group3, group4) {
     if (group2 === "Без прокачки") {
         if (group3 === "Без брони") {
-            return weapon.StockTimeNoArmor;
+            return group4 === "Голова" ? weapon.StockNoArmorHead : weapon.StockNoArmorBody;
         } else if (group3 === "Обычная броня") {
-            return weapon.StockTimeNormal;
+            return group4 === "Голова" ? weapon.StockNormalArmorHead : weapon.StockNormalArmorBody;
         } else if (group3 === "Укреплённая броня") {
-            return weapon.StockTimeReinforced;
+            return group4 === "Голова" ? weapon.StockReinforcedArmorHead : weapon.StockReinforcedArmorBody;
         }
     } else if (group2 === "Полная прокачка") {
         if (group3 === "Без брони") {
-            return weapon.FullTimeNoArmor;
+            return group4 === "Голова" ? weapon.FullNoArmorHead : weapon.FullNoArmorBody;
         } else if (group3 === "Обычная броня") {
-            return weapon.FullTimeNormal;
+            return group4 === "Голова" ? weapon.FullNormalArmorHead : weapon.FullNormalArmorBody;
         } else if (group3 === "Укреплённая броня") {
-            return weapon.FullTimeReinforced;
+            return group4 === "Голова" ? weapon.FullReinforcedArmorHead : weapon.FullReinforcedArmorBody;
         }
     }
     // Default case
     return 0;
 }
-
-
 
 
 
@@ -656,7 +681,7 @@ function GETNameFromCard(card) {
         OpenWindowTwo();
     }
 
-    findWeaponSkins(weaponName);
+    //findWeaponSkins(weaponName);
     TimeConque();
 
     var button = document.querySelector('.AddWpToSravIN');
@@ -905,7 +930,7 @@ function GETNameFromCardIvents1(card) {
     document.getElementById('ShareButton').setAttribute('share', weaponName);
 
 }
-
+/*
 function findWeaponSkins(weaponName) {
     var matchingSkins = skinsData.filter(function (row) {
         return row.BaseWeaponName === weaponName;
@@ -927,7 +952,7 @@ function findWeaponSkins(weaponName) {
         console.log('123131231');
     }
 }
-
+*/
 
 
 
@@ -1133,66 +1158,70 @@ function searchSrav(TextInput) {
 
 
 
-function insertCellsAndImageToRows(weaponName) {
-    var rowsStok = document.querySelectorAll('.tr-Srav_Stok');
-    var rowsFull = document.querySelectorAll('.tr-Srav_Full');
-    var imageZone = document.getElementById('NodeToClone_ImageSrav');
-    var clonedImageZone = imageZone.cloneNode(true);
-    var imageElement = clonedImageZone.querySelector('img');
 
-    var weaponData = jsonData.find(function (item) {
-        return item.Name === weaponName;
-    });
 
-    if (weaponData) {
-        var columnsStok = ['DamageSt', 'FireRate', 'MagazineSt', 'AmmoSt', 'Range', 'ReloadTime'];
-        var columnsFull = ['DamageFl', 'FireRate', 'MagazineFl', 'AmmoFl', 'Range', 'ReloadTime'];
 
-        var existingWeapons = document.querySelectorAll('[BaseWeapon="' + weaponData.Name + '"]');
-        if (existingWeapons.length > 0) {
-            alert('Оружие уже существует!');
-            return;
-        }
 
-        rowsStok.forEach(function (row, index) {
-            var cellValue = weaponData[columnsStok[index]];
-            var cell = document.createElement('td');
-            cell.className = 'td-srav';
-            cell.textContent = cellValue;
-            cell.setAttribute('BaseWeapon', weaponData.Name);
 
-            row.appendChild(cell);
-        });
 
-        rowsFull.forEach(function (row, index) {
-            var cellValue = weaponData[columnsFull[index]];
-            var cell = document.createElement('td');
-            cell.className = 'td-srav';
-            cell.textContent = cellValue;
-            cell.setAttribute('BaseWeapon', weaponData.Name);
 
-            row.appendChild(cell);
-        });
 
-        imageElement.src = "./assets/ItemIcons/" + weaponData.Image + ".png";
-        imageElement.setAttribute('BaseWeapon', weaponData.Name);
-        imageElement.setAttribute('STReinforced', weaponData.StockTimeReinforced);
-        imageElement.setAttribute('FTReinforced', weaponData.FullTimeReinforced);
 
-        clonedImageZone.removeAttribute('id');
-        clonedImageZone.hidden = false;
 
-        var weaponPrev = document.querySelector('.SravWeapontPrev');
-        weaponPrev.appendChild(clonedImageZone);
-    }
 
-    var imageElements = document.querySelectorAll('.ISWP_ImgZone');
-    imageElements.forEach(function (imageElement) {
-        imageElement.onclick = removeCellsAndImageOnClick;
-    });
 
-    findMinimumReinforcedValue();
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1214,7 +1243,6 @@ function removeCellsAndImageOnClick() {
     });
 
     imgZone.parentNode.removeChild(imgZone);
-    console.log('123');
 
     findMinimumReinforcedValue();
 }
