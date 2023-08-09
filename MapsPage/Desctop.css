@@ -1,5 +1,3 @@
-
-
 .Window_One {
     height: 100vh;
     width: 100vw;
@@ -20,7 +18,8 @@
     flex-wrap: nowrap;
     align-items: center;
 }
-.Window_Tree{
+
+.Window_Tree {
     min-height: 100vh;
     width: 100vw;
     background-color: var(--ba);
@@ -29,6 +28,7 @@
     flex-wrap: nowrap;
     align-items: center;
 }
+
 .header {
     width: 100%;
     height: 5vh;
@@ -36,7 +36,8 @@
     display: flex;
     flex-direction: row;
 }
-.LogoHead{
+
+.LogoHead {
     width: 40%;
     height: 100%;
     display: flex;
@@ -46,14 +47,16 @@
     flex-wrap: nowrap;
     flex-direction: row;
 }
-.LogoHead p{
+
+.LogoHead p {
     margin: 0 0 0 2vw;
     color: var(--te);
     font-family: 'ss';
     font-size: 4vh;
     border-bottom: 2px solid var(--ak);
 }
-.HeadButtons{
+
+.HeadButtons {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -64,7 +67,8 @@
     overflow: hidden;
     user-select: none;
 }
-.HeadButtons div{
+
+.HeadButtons div {
     border-radius: 100px;
     box-shadow: 0px 0px 0px 2px var(--ak);
     width: 8vw;
@@ -121,7 +125,7 @@
 
 
 
-aside{
+aside {
     width: 100%;
     max-width: 100%;
     height: max-content;
@@ -133,15 +137,17 @@ aside{
     align-content: center;
     flex-wrap: nowrap;
 }
-.SearchName{
+
+.SearchName {
     margin: 5vh 0vh 2vh 2vw;
     width: calc(100% - 2vw);
     font-family: 'ss';
     font-size: 5vh;
     color: var(--te);
-    
+
 }
-.CardsZone{
+
+.CardsZone {
     flex: 1;
     width: calc(100% - 4vh);
     max-width: calc(100% - 4vh);
@@ -157,6 +163,7 @@ aside{
     padding: 2vh 0vh 2vh 0vh;
     overflow: auto;
 }
+
 .card {
     width: 17vw;
     height: 27vh;
@@ -168,7 +175,7 @@ aside{
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
     font-size: 30px;
     font-family: 'ss';
-    
+
 }
 
 .card:hover {
@@ -199,7 +206,8 @@ aside{
     opacity: 1;
     border-radius: 15px;
 }
-.first-content img{
+
+.first-content img {
     width: 80%;
 }
 
@@ -258,17 +266,21 @@ aside{
     align-items: center;
     justify-content: center;
 }
-.SettingsZone::-webkit-scrollbar{
+
+.SettingsZone::-webkit-scrollbar {
     width: 1vh !important;
 }
-.SettingsZone::-webkit-scrollbar-track{
+
+.SettingsZone::-webkit-scrollbar-track {
     background: none;
 }
-.SettingsZone::-webkit-scrollbar-thumb{
+
+.SettingsZone::-webkit-scrollbar-thumb {
     background-color: var(--ak);
     border-radius: 100px
 }
-.SettingsZone{
+
+.SettingsZone {
     width: 100%;
     height: min-content;
     display: flex;
@@ -311,7 +323,8 @@ aside{
     height: 81vh;
     margin-top: 2vh;
 }
-.MainSettingSort{
+
+.MainSettingSort {
     max-width: 25vw;
     display: flex;
     flex-direction: column;
@@ -323,7 +336,8 @@ aside{
     height: max-content;
     overflow: hidden;
 }
-.SortSatt{
+
+.SortSatt {
     border-radius: 100px;
     border: 2px solid var(--ak);
     display: flex;
@@ -340,7 +354,8 @@ aside{
     text-align: center;
     user-select: none;
 }
-.GroupSort::after{
+
+.GroupSort::after {
     content: '';
     position: absolute !important;
     border-left: 1vh solid var(--te) !important;
@@ -357,7 +372,7 @@ aside{
 
 
 
-.ButtonTopsSearch{
+.ButtonTopsSearch {
     position: absolute;
     bottom: 0;
     width: 20vw;
@@ -383,7 +398,8 @@ aside{
     justify-content: center;
     height: 30vh;
 }
-.SearchInput{
+
+.SearchInput {
     width: 20vw;
     height: 5vh;
     border-radius: 100px;
@@ -391,11 +407,13 @@ aside{
     padding: 0vh 4vh 0vh 2vh;
     border: none;
 }
-.SearchConteiner{
+
+.SearchConteiner {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .ClearInputName {
     z-index: 99;
     position: absolute;
@@ -404,7 +422,8 @@ aside{
     font-size: 4vh;
     font-weight: 700;
 }
-.SearchResultZone{
+
+.SearchResultZone {
     width: 100%;
     height: max-content;
     max-height: 40vh;
@@ -412,7 +431,8 @@ aside{
     justify-content: center;
     align-items: flex-start;
 }
-.ResultCard{
+
+.ResultCard {
     height: max-content;
     width: 60%;
     max-height: 40vh;
@@ -439,7 +459,8 @@ aside{
     background-color: var(--ak);
     border-radius: 100px
 }
-.ResultRow{
+
+.ResultRow {
     width: 100%;
     height: 5vh;
     min-height: 5vh;
@@ -450,16 +471,18 @@ aside{
     flex-direction: row;
     justify-content: space-between;
 }
-.NameRow{
+
+.NameRow {
     font-size: 3vh;
     font-family: 'ss';
     color: var(--te);
     margin-left: 1vw;
 }
-.OtherLabelRow{
+
+.OtherLabelRow {
     height: 100%;
     max-width: 50%;
-    flex:1;
+    flex: 1;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -468,7 +491,7 @@ aside{
     flex-wrap: nowrap;
 }
 
-.OLR_deco{
+.OLR_deco {
     height: 70%;
     max-height: 70%;
     min-height: 70%;
@@ -478,25 +501,30 @@ aside{
     align-items: center;
     justify-content: center;
     border-left: 1px solid var(--ak);
-    border-right: 1px solid var(--ak) ;
+    border-right: 1px solid var(--ak);
     white-space: nowrap;
     overflow: hidden;
 }
+
 .OLRD_FIRST {
     border-left: 2px solid var(--ak) !important;
 }
-.OLRD_LAST{
+
+.OLRD_LAST {
     border-right: 0px !important;
 }
-.OLR_deco img{
+
+.OLR_deco img {
     max-height: 100%;
 }
-.OLR_img{
+
+.OLR_img {
     width: 2vw;
     max-width: 4vw;
     padding: 0vh 1vw;
 }
-.TypeWeaponRR{
+
+.TypeWeaponRR {
     font-family: 'ss';
     font-size: 3vh;
     color: var(--te);
@@ -504,14 +532,14 @@ aside{
     flex: 1;
 }
 
-.WeaponPrevZone{
+.WeaponPrevZone {
     display: flex;
     width: 100%;
     height: max-content;
     min-height: 95vh;
 }
 
-.StatsWeaponZone{
+.StatsWeaponZone {
     width: 50%;
     height: 95vh;
     display: flex;
@@ -538,7 +566,8 @@ aside{
     scroll-snap-type: x mandatory;
 
 }
-.SkinButtonAndPrev{
+
+.SkinButtonAndPrev {
     height: 21vh;
     width: 30vh;
     min-width: 30vh;
@@ -552,10 +581,12 @@ aside{
     border-right: 1px solid var(--ak);
     scroll-snap-align: start;
 }
-.SkinButtonAndPrev img{
+
+.SkinButtonAndPrev img {
     width: 100% !important;
-    
+
 }
+
 .SkinsZone .SkinButtonAndPrev:first-child {
     border-left: none;
 }
@@ -563,26 +594,30 @@ aside{
 .SkinsZone .SkinButtonAndPrev:last-child {
     border-right: none;
 }
-.SkinsZone::-webkit-scrollbar{
+
+.SkinsZone::-webkit-scrollbar {
     height: 1vh;
 }
+
 .ButtonToSkins {
     position: sticky;
     padding: 1vh;
     background-color: var(--li);
     border: 2px solid var(--ak);
     border-radius: 100px;
-    color:  var(--te);
+    color: var(--te);
     font-size: 2.7vh;
     font-family: 'ss';
     display: grid;
     place-items: center;
     user-select: none;
 }
-.btsLeft{
+
+.btsLeft {
     right: calc(-1vh + calc(50vw - calc(5vh + 4px)));
 }
-.btsRight{
+
+.btsRight {
     right: calc(1vh + calc(0vw + 2px));
 }
 
@@ -658,10 +693,12 @@ aside{
     overflow: auto;
     scroll-snap-type: y mandatory;
 }
-.weapon-stat-card-back::-webkit-scrollbar{
+
+.weapon-stat-card-back::-webkit-scrollbar {
     width: 1vh;
 }
-.weapon-stat-card-back::-webkit-scrollbar-thumb{
+
+.weapon-stat-card-back::-webkit-scrollbar-thumb {
     background-color: var(--ak);
 }
 
@@ -672,14 +709,16 @@ aside{
     min-height: 9vh;
     scroll-snap-align: start;
 }
-.WPCR_Name{
+
+.WPCR_Name {
     width: 100%;
     height: 3vh;
     text-align: left;
     font-size: 2.7vh;
     font-family: 'ss';
 }
-.WPCR_TTX{
+
+.WPCR_TTX {
     display: flex;
     width: 100%;
     height: max-content;
@@ -693,6 +732,7 @@ aside{
     font-size: 4vh;
     background: linear-gradient(90deg, var(--ak) 50%, var(--ba) 100%);
 }
+
 .WPCR_TTX p:first-child {
     margin: 2% 0% 2% 8%;
 
@@ -709,7 +749,8 @@ aside{
     justify-content: center;
     flex-direction: column;
 }
-.WPIZ_Area{
+
+.WPIZ_Area {
     height: 80%;
     width: 100%;
     display: flex;
@@ -723,12 +764,14 @@ aside{
     overflow: auto;
     scroll-snap-type: x mandatory;
 }
-.WPIZ_Area img{
+
+.WPIZ_Area img {
     scroll-snap-align: center;
     width: 80%;
     margin: 0% 10%;
 }
-.WPIZ_Buttons{
+
+.WPIZ_Buttons {
     width: 100%;
     height: max-content;
     max-height: 20%;
@@ -738,7 +781,8 @@ aside{
     justify-content: space-evenly;
     user-select: none;
 }
-.WPIZ_Buttons div{
+
+.WPIZ_Buttons div {
     width: 20%;
     height: 5vh;
     border-radius: 100px;
@@ -749,7 +793,8 @@ aside{
     font-size: 3vh;
     font-family: 'ss';
 }
-.TimeZone{
+
+.TimeZone {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -760,7 +805,8 @@ aside{
     height: max-content;
     min-height: 100vh;
 }
-.TimeSettings{
+
+.TimeSettings {
     width: 100%;
     height: max-content;
     display: flex;
@@ -781,7 +827,8 @@ aside{
     margin: 0vw 1vw;
 }
 
-.inputBox input, select {
+.inputBox input,
+select {
     padding: 2vh 1vw;
     outline: none;
     background: transparent;
@@ -796,12 +843,14 @@ aside{
     -moz-appearance: none;
     box-sizing: border-box;
 }
-option{
+
+option {
     color: black;
     outline: none;
     border: none;
     appearance: none;
 }
+
 .inputBox span {
     position: absolute;
     left: 10%;
@@ -818,7 +867,7 @@ option{
     top: 2vh;
 }
 
-.TableTime{
+.TableTime {
     width: 100%;
     height: max-content;
     flex: 1;
@@ -828,7 +877,8 @@ option{
     justify-content: center;
     flex-direction: column;
 }
-.Thead{
+
+.Thead {
     width: 60%;
     height: 10vh;
     display: flex;
@@ -841,7 +891,8 @@ option{
     margin-bottom: 2vh;
     border-radius: 5px;
 }
-.Thead div{
+
+.Thead div {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -854,6 +905,7 @@ option{
     font-size: 3.1vh;
     padding: 1vh 0vh;
 }
+
 .weapon-time-table {
     border-radius: 5px;
     width: 60%;
@@ -865,6 +917,7 @@ option{
     border-top: 2px solid var(--ak);
     border-bottom: 2px solid var(--ak);
 }
+
 .td-time {
     display: flex;
     flex-direction: row;
@@ -879,6 +932,7 @@ option{
     font-size: 3.1vh;
     padding: 1vh 0vh;
 }
+
 .tr-time {
     display: flex;
     flex-direction: row;
@@ -891,6 +945,7 @@ option{
     position: relative;
     left: -4px;
 }
+
 .weapon-time-table tbody .tr-time:first-child {
     border-top: none;
 }
@@ -905,13 +960,14 @@ option{
 
 
 
-.Srav_Zone{
+.Srav_Zone {
     display: flex;
     width: 100%;
     height: max-content;
     min-height: 95%;
     overflow-x: auto;
 }
+
 .headerSrav {
     width: 100%;
     height: 5vh;
@@ -920,7 +976,8 @@ option{
     flex-direction: row;
     align-items: center;
 }
-.HeadSravBack{
+
+.HeadSravBack {
     border-radius: 100px;
     box-shadow: 0px 0px 0px 2px var(--ak);
     width: 8vw;
@@ -933,7 +990,8 @@ option{
     font-size: 2.7vh;
     margin-left: 3vw;
 }
-.Srav_Zone{
+
+.Srav_Zone {
     width: 100%;
     max-width: 100vw;
     height: 95vh;
@@ -945,10 +1003,12 @@ option{
     flex-wrap: nowrap;
     align-content: center;
 }
-.Srav_Zone::-webkit-scrollbar{
+
+.Srav_Zone::-webkit-scrollbar {
     height: 1vh;
 }
-.weapon-srav-table{
+
+.weapon-srav-table {
     border-radius: 5px;
     width: 100%;
     height: 60%;
@@ -959,21 +1019,24 @@ option{
     font-family: 'ss';
     color: var(--te);
     font-size: 3.5vh;
-     
+
 }
-.SravWeapontPrev{
+
+.SravWeapontPrev {
     width: 100%;
     height: 26vh;
     display: flex;
     /*overflow: auto;*/
-     
+
 }
+
 .ISWP_zz {
     width: calc(28vw - 3vw) !important;
     padding-left: 3vw;
     min-width: calc(28vw - 3vw) !important;
 }
-.ISWP_ImgZone{
+
+.ISWP_ImgZone {
     height: 100%;
     width: 18vw;
     display: flex;
@@ -987,7 +1050,8 @@ option{
     align-content: center;
     flex-wrap: nowrap;
 }
-.ISWP_ImgZone::after{
+
+.ISWP_ImgZone::after {
     content: "Убрать";
     color: var(--te);
     font-size: 4vh;
@@ -999,30 +1063,34 @@ option{
     transform: translateY(30vh);
     transition: all .2s linear;
 }
-.ISWP_ImgZone:hover{
+
+.ISWP_ImgZone:hover {
     background-color: var(--error);
 }
 
-.ISWP_ImgZone:hover img{
+.ISWP_ImgZone:hover img {
     transform: translateY(-30vh);
 }
+
 .ISWP_ImgZone:hover::after {
     transform: rotateY(360deg);
     transform: translateY(-13vh);
 }
 
-.ISWP_ImgZone img{
+.ISWP_ImgZone img {
     max-width: 100%;
     max-height: 100%;
     transition: all .2s linear;
 }
-.weapon-srav-table{
+
+.weapon-srav-table {
     width: 100%;
     max-width: 100%;
     /*overflow: auto;*/
     display: flex;
 }
-.tbody-srav{
+
+.tbody-srav {
     display: flex;
     width: max-content;
     min-width: 100vw;
@@ -1034,7 +1102,8 @@ option{
     align-content: flex-start;
     flex-wrap: nowrap;
 }
-.NameSrav{
+
+.NameSrav {
     width: calc(28vw - 3vw) !important;
     max-width: calc(28vw - 3vw) !important;
     min-width: calc(28vw - 3vw) !important;
@@ -1042,7 +1111,8 @@ option{
     padding-left: 3vw;
     border: none !important;
 }
-.tr-Srav{
+
+.tr-Srav {
     display: flex;
     width: max-content;
     min-width: 100vw;
@@ -1051,10 +1121,11 @@ option{
     height: 9vh;
     align-items: center;
     background-color: var(--li);
-    
+
 
 }
-.td-srav{
+
+.td-srav {
     flex: 1;
     min-width: calc(24vw - 2px);
     display: flex;
@@ -1070,18 +1141,20 @@ option{
 .tbody-srav .tr-Srav:first-child {
     border-top: 2px solid var(--ak);
 }
-.tbody-srav .tr-Srav:last-child{
+
+.tbody-srav .tr-Srav:last-child {
     border-bottom: 2px solid var(--ak);
 }
 
 .tr-Srav .td-srav:nth-child(2) {
     border-left: 2px solid var(--ak);
 }
-.tr-Srav .td-srav:last-child{
+
+.tr-Srav .td-srav:last-child {
     border-right: none !important;
 }
 
-.SravResult{
+.SravResult {
     position: fixed;
     display: flex;
     align-items: center;
@@ -1095,13 +1168,16 @@ option{
     color: var(--ak);
     left: 0;
 }
-.ClearInputName{
+
+.ClearInputName {
     display: none;
 }
+
 .SearchInput:not(:placeholder-shown)+.ClearInputName {
     display: block !important;
 }
-.TableSravScroll{
+
+.TableSravScroll {
     position: absolute;
     right: 3vw;
     display: flex;
@@ -1112,7 +1188,8 @@ option{
     flex-wrap: nowrap;
     align-content: center;
 }
-.TableSravScroll div{
+
+.TableSravScroll div {
     border-radius: 100px;
     width: 5vh;
     height: 5vh;
@@ -1125,7 +1202,7 @@ option{
 }
 
 
-.SearchSrav{
+.SearchSrav {
     width: 50vw;
     height: 100vh;
     background-color: var(--li);
@@ -1133,9 +1210,10 @@ option{
     top: 0;
     transition: all 1s ease-in-out;
     right: 0;
-    
+
 }
-.SearchSravHide{
+
+.SearchSravHide {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -1143,17 +1221,21 @@ option{
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: center;
-    
+
 }
-.FWS{
+
+.FWS {
     transform: translateX(50vw);
 }
-.RCSrav{
+
+.RCSrav {
     background-color: var(--ba) !important;
 }
-.RCSrav::-webkit-scrollbar-track{
+
+.RCSrav::-webkit-scrollbar-track {
     background-color: var(--li) !important;
 }
+
 .RCS_2 {
     display: flex;
     width: 100%;
@@ -1173,14 +1255,16 @@ option{
     font-family: 'ss';
     overflow: hidden;
 }
-.RCSrav .RCS_2:first-child{
+
+.RCSrav .RCS_2:first-child {
     border-top: 2px solid var(--ak);
 }
 
 .RCSrav .RCS_2:last-child {
     border-bottom: 2px solid var(--ak);
 }
-.HeadSravAddMore{
+
+.HeadSravAddMore {
     border-radius: 100px;
     box-shadow: 0px 0px 0px 2px var(--ak);
     width: max-content;
@@ -1196,16 +1280,18 @@ option{
     border: none !important;
     text-align: center;
 }
-.HeadSravAddMore{
 
-}
-.buttonTops1{
+.HeadSravAddMore {}
+
+.buttonTops1 {
     background-color: var(--ak);
 }
-.buttonTops2{
+
+.buttonTops2 {
     background-color: var(--ak);
 }
-.buttonTops3{
+
+.buttonTops3 {
     background-color: var(--ak);
 }
 
@@ -1215,6 +1301,6 @@ option{
 .WPIZ_Buttons div:hover,
 select:hover,
 .LogoHead:hover,
-.ResultRow:hover{
+.ResultRow:hover {
     cursor: pointer;
 }

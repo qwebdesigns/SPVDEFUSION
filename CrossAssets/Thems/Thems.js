@@ -127,9 +127,16 @@ if (savedSetting === 'true') {
 
 
 
+var originalWidth, originalHeight;
 
-var originalWidth = 17 * window.innerWidth / 100;
-var originalHeight = 27 * window.innerHeight / 100;
+if (window.innerWidth > 767) {
+    originalWidth = 17 * window.innerWidth / 100;
+    originalHeight = 27 * window.innerHeight / 100;
+} else {
+    originalWidth = 40 * window.innerWidth / 100;
+    originalHeight = 20 * window.innerHeight / 100;
+}
+
 
 function setScale(value) {
     var width;

@@ -518,18 +518,41 @@ function toggleTableVisibility(sravPump) {
     var sravPumpLevel = sravPump.value;
     var tableStok = document.getElementById('TableStok');
     var tableFull = document.getElementById('TableFull');
+    var tableStokt = document.getElementById('TableTimeStock');
+    var tableFullt = document.getElementById('TableTimeFull');
 
     if (sravPumpLevel === 'Сток') {
         tableStok.hidden = false;
         tableFull.hidden = true;
+        tableStokt.hidden = false;
+        tableFullt.hidden = true;
     } else if (sravPumpLevel === 'Фулл') {
         tableStok.hidden = true;
         tableFull.hidden = false;
+        tableStokt.hidden = true;
+        tableFullt.hidden = false;
     } else {
         console.log('Некорректное значение sravPumpLevel');
     }
-    findMinimumReinforcedValue();
+    //findMinimumReinforcedValue();
 }
 
-
+function MoreinfoSrav(btn) {
+    var TableTTX = document.getElementById('TablleTTX');
+    var TableTime = document.getElementById('TableTime');
+    var btn_atr = btn.getAttribute('jote');
+    if (btn_atr === 'FEUS') {
+        TableTTX.hidden = true;
+        TableTime.hidden = false;
+        btn.setAttribute('jote', 'unFEUS');
+        btn.textContent = 'Кратко';
+    } else if (btn_atr === 'unFEUS') {
+        TableTime.hidden = true;
+        TableTTX.hidden = false;
+        btn.setAttribute('jote', 'FEUS');
+        btn.textContent = 'Подробно';
+    } else {
+        console.log('Некорректное значение btn');
+    }
+}
 

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./WeaponsPage/Desctop.css">
     <link rel="stylesheet" href="./WeaponsPage/Mobile.css">
     <link rel="stylesheet" href="./CrossAssets/Settings.css">
+    <link rel="stylesheet" href="./CrossAssets/SettingsMobile.css">
     <link rel="stylesheet" href="./CrossAssets/Smooting/Smooth.css" id="SmoothinkLink">
 
 
@@ -24,15 +25,15 @@
     <!--Сортировки, поиски и т.д-->
     <article class="Window_One" >
         <div class="header">
-            <div class="LogoHead">
+            <a class="LogoHead" href="./index.html">
                 <p>Справочник</p>
-            </div>
+            </a>
             <div class="HeadButtons">
                 <div onclick="openSearchByType(this)">Типы</div>
                 <div onclick="openSearchByTop(this)">Топы</div>
                 <div onclick="openSearchByIvent(this)">Ивент</div>
                 <div class="btnSelected" onclick="openSearchByName(this)">Название</div>
-                <div onclick="openSravnenie(this)" id="SravnenieOpennButton _Window_One">Сравнение</div>
+                <!--<div onclick="openSravnenie(this)" id="SravnenieOpennButton _Window_One">Сравнение</div>-->
             </div>
         </div>
 
@@ -257,7 +258,7 @@
                 <p id='logoandback' onclick="BackToOne()">Справочник</p>
             </div>
             <div class="HeadButtons">
-                <div onclick="openSravnenie(this)"  id="SravnenieOpennButton _Window_Two" class="AddWpToSravIN">Сравнить</div>
+                <!--<div onclick="openSravnenie(this)"  id="SravnenieOpennButton _Window_Two" class="AddWpToSravIN">Сравнить</div>-->
                 <div id="ShareButton" onclick="getShareLink(this)">Поделиться</div>
             </div>
         </div>
@@ -516,7 +517,7 @@
     </article>
 
     <!--Режим сравнения-->
-    <article class="Window_Tree" hidden>
+    <!--<article class="Window_Tree" hidden>
         <div class="headerSrav">
             <div class="HeadSravBack" onclick="findSravnenieElement();">Назад</div>
             <div class="HeadSravAddMore" onclick="showBlockSrav()">Добавить к сравнению</div>
@@ -525,22 +526,20 @@
                 <option value="Фулл" selected>Фулл</option>
             </select>
             <select class="HeadSravAddMore" id="PlayerHP">
-                <!--<option value="Тело" disabled>Тело</option>-->
+                
                 <option value="100" selected>Без брони</option>
                 <option value="125">Обычная</option>
                 <option value="150">Укреплённая</option>
             </select>
+            <div class="HeadSravAddMore" onclick="MoreinfoSrav(this);" jote="FEUS">Подробно</div>
         </div>
         <div class="Srav_Zone" >
             <div class="SravWeapontPrev">
                 <div class="ISWP_zz"></div>
-                <!--
-                <div class="ISWP_ImgZone">
-                    <img src="./qq71.png">
-                </div>
-                -->
             </div>
-            <table class="weapon-srav-table">
+
+
+            <table class="weapon-srav-table" id="TablleTTX">
                 <tbody class="tbody-srav" id="TableStok" hidden>
                     <tr class="tr-Srav tr-Srav_Stok">
                         <td class="td-srav NameSrav">Урон:</td>
@@ -561,7 +560,7 @@
                         <td class="td-srav NameSrav">Перезарядка:</td>
                     </tr>
                 </tbody>
-                <tbody class="tbody-srav" id="TableFull" hidden>
+                <tbody class="tbody-srav" id="TableFull" >
                     <tr class="tr-Srav tr-Srav_Full">
                         <td class="td-srav NameSrav">Урон фулл:</td>
                     </tr>
@@ -581,7 +580,9 @@
                         <td class="td-srav NameSrav">Перезарядка:</td>
                     </tr>
                 </tbody>
-                <tbody class="tbody-srav" id="TableTimeStock">
+            </table>
+            <table class="weapon-srav-table" id="TableTime" hidden>
+                <tbody class="tbody-srav" id="TableTimeStock" hidden>
                     <tr class="tr-Srav tr-Srav_TimeSt">
                         <td class="td-srav NameSrav">Голова:</td>
                     </tr>
@@ -634,6 +635,7 @@
                     </tr>
                 </tbody>
             </table>
+
             <div class="SravResult">
                 <span id="WinWeapon">...</span>  - лидер в сравнении
                 <div class="TableSravScroll">
@@ -669,13 +671,6 @@
                     </div>
                 </div>
         
-            <!--div class="SearchSrav TWS">
-                <div class="ResultCard RCSrav">
-                    <div class="RCS_2">
-                        хуй
-                    </div>
-                </div>
-            </div>-->
             <div class="SearchSravHide">
                 <div class="ButtonTopsSearch" onclick="HideBlockSrav()">
                     Закрыть
@@ -684,7 +679,7 @@
             
         </div>
 
-    </article>
+    </article>-->
 
 
 

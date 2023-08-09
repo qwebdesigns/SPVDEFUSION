@@ -1,10 +1,11 @@
-@media (min-width: 768px) {
+@media (max-width: 767px) {
+
 .CrossSettings{
     width: max-content;
     height: max-content;
     position: fixed;
-    bottom: 0;
-    left: 0;
+    bottom: 0px;
+    left: 0px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
@@ -35,18 +36,18 @@
     content: '';
     position: absolute;
     left: 5vh;
-    border-bottom: 4vw solid var(--ak);
-    border-right: 4vw solid var(--tr);
+    border-bottom: 5vh solid var(--ak);
+    border-right: 5vh solid var(--tr);
 }
 
 .CSPanels:is(:hover, :focus, :active)
 {
-    width: 15vw;
+    min-width: max-content;
     height: 40vh;
     overflow: auto;
     left: 0vh;
 }
-.CSPanels:hover::before {
+.CSPanels:is(:hover, :focus, :active)::before {
     display: none;
 
 }

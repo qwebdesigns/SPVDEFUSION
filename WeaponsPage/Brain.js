@@ -242,6 +242,7 @@ function filterWeaponsByType(type) {
 
         resultContainer.appendChild(card);
     });
+    document.getElementById("SearchNameLabel").textContent = type;
     openStandartCard();
 }
 
@@ -684,9 +685,9 @@ function GETNameFromCard(card) {
     //findWeaponSkins(weaponName);
     TimeConque();
 
-    var button = document.querySelector('.AddWpToSravIN');
-    var linkes = 'openSravnenie(this); insertCellsAndImageToRows(\'' + weaponName + '\');'
-    button.setAttribute('onclick', linkes);
+    //var button = document.querySelector('.AddWpToSravIN');
+    //var linkes = 'openSravnenie(this); insertCellsAndImageToRows(\'' + weaponName + '\');'
+    //button.setAttribute('onclick', linkes);
 
     document.getElementById('ShareButton').setAttribute('share', weaponName);
 }
@@ -1173,6 +1174,782 @@ function searchSrav(TextInput) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function insertCellsAndImageToRows(weaponName) {
+    var imageZone = document.getElementById('NodeToClone_ImageSrav');
+    var clonedImageZone = imageZone.cloneNode(true);
+    var imageElement = clonedImageZone.querySelector('img');
+
+    var weaponData = jsonData.find(function (item) {
+        return item.Name === weaponName;
+    });
+
+    if (weaponData) {
+
+        var existingWeapons = document.querySelectorAll('[BaseWeapon="' + weaponData.Name + '"]');
+        if (existingWeapons.length > 0) {
+            alert('Оружие уже существует!');
+            return;
+        }
+
+        AddStockSrav(weaponData);
+        AddFullSrav(weaponData);
+        SpeedsKillIset(weaponData);
+
+        imageElement.src = "./assets/ItemIcons/" + weaponData.Image + ".png";
+        imageElement.setAttribute('BaseWeapon', weaponData.Name);
+        imageElement.setAttribute('STReinforced', weaponData.StockTimeReinforced);
+        imageElement.setAttribute('FTReinforced', weaponData.FullTimeReinforced);
+        imageElement.setAttribute('TimeSpeeds', [1,2,3,4,5,6,7,8,9,0,1,2,34,5,6,7,8,9,0,0,8,76,5456,46]);
+
+        clonedImageZone.removeAttribute('id');
+        clonedImageZone.hidden = false;
+
+        var weaponPrev = document.querySelector('.SravWeapontPrev');
+        weaponPrev.appendChild(clonedImageZone);
+    }
+
+    var imageElements = document.querySelectorAll('.ISWP_ImgZone');
+    imageElements.forEach(function (imageElement) {
+        imageElement.onclick = removeCellsAndImageOnClick;
+    });
+
+    findMinimumReinforcedValue();
+}
+
+
+
+function AddStockSrav(weaponData) {
+    var rowsStok = document.querySelectorAll('.tr-Srav_Full');
+    var columnsStok = ['DamageSt', 'FireRate', 'MagazineSt', 'AmmoSt', 'Range', 'ReloadTime'];
+
+    rowsStok.forEach(function (row, index) {
+        var cellValue = weaponData[columnsStok[index]];
+        var cell = document.createElement('td');
+        cell.className = 'td-srav';
+        cell.textContent = cellValue;
+        cell.setAttribute('BaseWeapon', weaponData.Name);
+
+        row.appendChild(cell);
+    });
+}
+
+function AddFullSrav(weaponData) {
+    var rowsFull = document.querySelectorAll('.tr-Srav_Stok');
+    var columnsFull = ['DamageFl', 'FireRate', 'MagazineFl', 'AmmoFl', 'Range', 'ReloadTime'];
+
+    rowsFull.forEach(function (row, index) {
+        var cellValue = weaponData[columnsFull[index]];
+        var cell = document.createElement('td');
+        cell.className = 'td-srav';
+        cell.textContent = cellValue;
+        cell.setAttribute('BaseWeapon', weaponData.Name);
+
+        row.appendChild(cell);
+    });
+}
+
+function SpeedsKillIset(weaponData) {
+    var rowsStokTime = document.querySelectorAll('.tr-Srav_TimeSt');
+    var rowsFullTime = document.querySelectorAll('.tr-Srav_TimeFull');
+    var columnsTime = ['Head', 'Body', 'Shoulder', 'Forearm', 'Wrist', 'Thigh', 'Shin', 'Foot'];
+    
+    //  imageElement.setAttribute('TimeSpeeds', [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 34, 5, 6, 7, 8, 9, 0, 0, 8, 76, 5456, 46]);
+    //  imageElements = document.querySelectorAll('.ISWP_ImgZone img');
+    //  Math.ceil(60 / weapon.Speed * 1000 * (Math.ceil(100 / (weapon.damage * 2)) - 1));
+    //     ОКРУГЛ(60 / weapon.Speed * 1000 * ( ОКРВВЕРХ(100 / (weapon.damage * 2)) - 1))
+
+    rowsStokTime.forEach(function (row, index) {
+
+        var cellValue;// = '1';//weaponData[columnsTime[index]];
+
+        switch (columnsTime[index]) {
+            case 'Head':
+                cellValue = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageSt * 1.5)) - 1));
+                break;
+            case 'Body':
+                cellValue = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageSt * 1)) - 1));
+                break;
+            case 'Shoulder':
+                cellValue = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageSt * 0.95)) - 1));
+                break;
+            case 'Forearm':
+                cellValue = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageSt * 0.9)) - 1));
+                break;
+            case 'Wrist':
+                cellValue = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageSt * 0.85)) - 1));
+                break;
+            case 'Thigh':
+                cellValue = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageSt * 0.6)) - 1));
+                break;
+            case 'Shin':
+                cellValue = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageSt * 0.5)) - 1));
+                break;
+            case 'Foot':
+                cellValue = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageSt * 0.4)) - 1));
+                break;
+            default:
+                console.log('Invalid body part');
+        }
+
+
+
+
+        var cell = document.createElement('td');
+        cell.className = 'td-srav';
+        cell.textContent = cellValue;
+        cell.setAttribute('BaseWeapon', weaponData.Name);
+
+        row.appendChild(cell);
+
+    });
+
+    rowsFullTime.forEach(function (row, index) {
+
+        var cellValue; // = '1';//weaponData[columnsTime[index]];
+
+        switch (columnsTime[index]) {
+            case 'Head':
+                cellValue = Math.round(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageFl * 1.5)) - 1));
+                break;
+            case 'Body':
+                cellValue = Math.round(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageFl * 1)) - 1));
+                break;
+            case 'Shoulder':
+                cellValue = Math.round(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageFl * 0.95)) - 1));
+                break;
+            case 'Forearm':
+                cellValue = Math.round(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageFl * 0.9)) - 1));
+                break;
+            case 'Wrist':
+                cellValue = Math.round(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageFl * 0.85)) - 1));
+                break;
+            case 'Thigh':
+                cellValue = Math.round(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageFl * 0.6)) - 1));
+                break;
+            case 'Shin':
+                cellValue = Math.round(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageFl * 0.5)) - 1));
+                break;
+            case 'Foot':
+                cellValue = Math.round(60 / weaponData.FireRate * 1000 * (Math.ceil(150 / (weaponData.DamageFl * 0.4)) - 1));
+                break;
+            default:
+                console.log('Invalid body part');
+        }
+
+
+
+
+        var cell = document.createElement('td');
+        cell.className = 'td-srav';
+        cell.textContent = cellValue;
+        cell.setAttribute('BaseWeapon', weaponData.Name);
+
+        row.appendChild(cell);
+
+    });
+}
+/*
+Head = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(100 / (weaponData.DamageFl * 2)) - 1));
+Body = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(100 / (weaponData.DamageFl * 1)) - 1));
+Shoulder = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(100 / (weaponData.DamageFl * 0.95)) - 1));
+Forearm = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(100 / (weaponData.DamageFl * 0.9)) - 1));
+Wrist = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(100 / (weaponData.DamageFl * 0.85)) - 1));
+Thigh = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(100 / (weaponData.DamageFl * 0.6)) - 1));
+Shin = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(100 / (weaponData.DamageFl * 0.5)) - 1));
+Foot = Math.ceil(60 / weaponData.FireRate * 1000 * (Math.ceil(100 / (weaponData.DamageFl * 0.4)) - 1));
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function removeCellsAndImageOnClick() {
+    var imgZone = this;
+    var imageElement = imgZone.querySelector('img');
+    var baseWeapon = imageElement.getAttribute('BaseWeapon');
+    var cells = document.querySelectorAll('.td-srav[BaseWeapon="' + baseWeapon + '"]');
+
+    cells.forEach(function (cell) {
+        cell.parentNode.removeChild(cell);
+    });
+
+    imgZone.parentNode.removeChild(imgZone);
+    console.log('123');
+
+    findMinimumReinforcedValue();
+}
+
+function findMinimumReinforcedValue() {
+    var imageElements = document.querySelectorAll('.ISWP_ImgZone img');
+    var sravPumpLevel = document.getElementById('sravPupmLevel').value;
+    var minimumReinforcedValue;
+    var minimumReinforcedWeapons = [];
+
+    imageElements.forEach(function (imageElement) {
+        var reinforcedValue;
+        var baseName;
+
+        if (sravPumpLevel === 'Сток') {
+            reinforcedValue = imageElement.getAttribute('STReinforced');
+        } else if (sravPumpLevel === 'Фулл') {
+            reinforcedValue = imageElement.getAttribute('FTReinforced');
+        }
+
+        baseName = imageElement.getAttribute('baseweapon');
+
+        if (reinforcedValue) {
+            if (!minimumReinforcedValue || reinforcedValue < minimumReinforcedValue) {
+                minimumReinforcedValue = reinforcedValue;
+                minimumReinforcedWeapons = [baseName];
+            } else if (reinforcedValue === minimumReinforcedValue) {
+                minimumReinforcedWeapons.push(baseName);
+            }
+        }
+    });
+
+    var winWeaponElement = document.getElementById('WinWeapon');
+    if (minimumReinforcedWeapons.length > 0) {
+        winWeaponElement.textContent = minimumReinforcedWeapons.join(', ');
+        console.error('Минимальное значение усиления: ' + minimumReinforcedValue);
+    } else {
+        winWeaponElement.textContent = '';
+        console.error('Нет доступных значений усиления');
+    }
+}
 
 
 

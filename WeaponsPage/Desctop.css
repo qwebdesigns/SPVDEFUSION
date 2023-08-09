@@ -584,6 +584,7 @@
         scroll-snap-align: start;
     }
 
+    
     .SkinButtonAndPrev img {
         width: 100% !important;
 
@@ -1102,6 +1103,16 @@
         justify-content: flex-start !important;
         padding-left: 3vw;
         border: none !important;
+    }
+
+    .HeadSravBack,
+    .HeadSravAddMore {
+        user-select: none;
+    }
+
+    .HeadSravBack:hover,
+    .HeadSravAddMore:hover {
+        cursor: pointer;
     }
 
     .tr-Srav {
