@@ -470,7 +470,7 @@ function filterWeaponsByEdition(edition) {
 
         resultContainer.appendChild(card);
     });
-
+    document.getElementById("SearchNameLabel").textContent = edition;
     openStandartCard();
 }
 
@@ -515,7 +515,7 @@ function filterWeaponsByEdition2(edition) {
 
         resultContainer.appendChild(card);
     });
-
+    document.getElementById("SearchNameLabel").textContent = edition;
     openStandartCard();
 }
 
@@ -561,7 +561,7 @@ function filterWeaponsByEd_Combo(edition) {
     });
 
 
-
+    document.getElementById("SearchNameLabel").textContent = edition;
 }
 
 
